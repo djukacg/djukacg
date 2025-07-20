@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontrola Pristupa</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(120deg, #1a1a1a, #444);
+        color: #fff;
+        overflow-x: hidden;
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: rgba(0,0,0,0.7);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+    }
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+    nav a {
+        color: #fff;
+        margin-left: 15px;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    nav a:hover {
+        color: #66ccff;
+    }
+    section {
+        padding: 80px 20px;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+    .hero {
+        background: url('https://picsum.photos/seed/access/1600/900') center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        animation: fadeIn 1s ease-in;
+    }
+    .hero h2 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+    .login-form {
+        background: rgba(0,0,0,0.6);
+        padding: 20px;
+        border-radius: 8px;
+        display: inline-block;
+        animation: slideDown 0.8s ease-out;
+    }
+    .login-form input {
+        width: 200px;
+        padding: 10px;
+        margin: 5px 0;
+        border: none;
+        border-radius: 4px;
+    }
+    .login-form button {
+        width: 100%;
+        padding: 10px;
+        background: #66ccff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .login-form button:hover {
+        background: #4db8e6;
+    }
+    .about, .services, .contact {
+        background: #222;
+        margin: 10px 0;
+        border-radius: 8px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .about.visible, .services.visible, .contact.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .contact form {
+        display: flex;
+        flex-direction: column;
+    }
+    .contact input, .contact textarea {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+    }
+    .contact button {
+        padding: 10px;
+        background: #66ccff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .contact button:hover {
+        background: #4db8e6;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes slideDown {
+        from { transform: translateY(-40px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Kontrola Pristupa</h1>
+    <nav>
+        <a href="#about">Ko smo</a>
+        <a href="#services">Čime se bavimo</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Dobrodošli na kontrola-pristupa.me</h2>
+    <div class="login-form">
+        <form action="https://kontrola-pristupa.me/login" method="POST">
+            <input type="text" name="username" placeholder="Korisničko ime" required>
+            <input type="password" name="password" placeholder="Lozinka" required>
+            <button type="submit">Prijava</button>
+        </form>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <h2>Ko smo</h2>
+    <p>Mi smo tim stručnjaka za kontrolu pristupa sa višegodišnjim iskustvom u industriji.</p>
+</section>
+
+<section id="services" class="services">
+    <h2>Čime se bavimo</h2>
+    <p>Razvijamo i implementiramo napredna rešenja za pristupne sisteme koja obezbeđuju sigurnost i jednostavnost korišćenja.</p>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Kontakt</h2>
+    <form action="https://kontrola-pristupa.me/contact" method="POST">
+        <input type="text" name="name" placeholder="Vaše ime" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Poruka" rows="4" required></textarea>
+        <button type="submit">Pošalji</button>
+    </form>
+</section>
+
+<script>
+    // Simple scroll reveal effect
+    function revealOnScroll() {
+        var sections = document.querySelectorAll('.about, .services, .contact');
+        var windowHeight = window.innerHeight;
+        for (var i = 0; i < sections.length; i++) {
+            var elementTop = sections[i].getBoundingClientRect().top;
+            if (elementTop < windowHeight - 60) {
+                sections[i].classList.add('visible');
+            }
+        }
+    }
+    document.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>
+
